@@ -3,7 +3,7 @@ import Player from './components/Player';
 import GameBoard from './components/GameBoard';
 import Log from './components/Log';
 import { WINNING_COMBINATIONS } from './winning-combinations.js';
-import GameOver from './components/GameOver.jsx';
+import GameOver from './components/GameOver';
 
 const initialGameBoard = [
 	[null, null, null],
@@ -14,7 +14,7 @@ const initialGameBoard = [
 function derivedActiveplayer(gameTurns) {
 	let currentPlayer = 'X';
 	if (gameTurns.length > 0 && gameTurns[0].player === 'X') {
-		currentPlayer = '0';
+		currentPlayer = 'O';
 	}
 	return currentPlayer;
 }
@@ -24,7 +24,7 @@ export default function App() {
 
 	const [players, setPlayers] = useState({
 		X: 'Player 1',
-		0: 'Player 2',
+		O: 'Player 2',
 	});
 	const [gameTurns, setGameTurns] = useState([]);
 
@@ -103,7 +103,7 @@ export default function App() {
 					<Player
 						initialName='Player 2'
 						symbol='O'
-						isActive={activePlayer === '0'}
+						isActive={activePlayer === 'O'}
 						onChangeName={handlePlayerNameChange}
 					/>
 				</ol>

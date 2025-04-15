@@ -7,29 +7,30 @@ export default function Player({
 	onChangeName,
 }) {
 	const [isEditing, setIsEditing] = useState(false);
-	const [updatedPlayerName, setUpdatedPlayerName] = useState(initialName);
+	// const [updatedPlayerName, setUpdatedPlayerName] = useState(initialName);
+	const [playerName, setPlayerName] = useState(initialName);
 
-	let playerName = <span className='player-name'>{updatedPlayerName}</span>;
+	let editablePlayerName = <span className='player-name'>{playerName}</span>;
 
 	let btnCaption = <span>Edit</span>;
 
 	const handleEditClick = () => {
 		setIsEditing((editing) => !editing);
-		console.log(isEditing);
+		//console.log(isEditing);
 		if (isEditing) {
 			onChangeName(symbol, playerName);
 		}
 	};
 
 	const handlePlayerName = (e) => {
-		setUpdatedPlayerName(e.target.value);
+		setPlayerName(e.target.value);
 	};
 
 	if (isEditing) {
-		playerName = (
+		editablePlayerName = (
 			<input
 				type='text'
-				value={updatedPlayerName}
+				value={playerName}
 				onChange={handlePlayerName}
 				required
 			/>
@@ -43,7 +44,7 @@ export default function Player({
 	return (
 		<li className={isActive ? 'active' : undefined}>
 			<span className='player'>
-				{playerName}
+				{editablePlayerName}
 				<span className='player-symbol'>{symbol}</span>
 			</span>
 			<button onClick={handleEditClick}>{btnCaption}</button>
